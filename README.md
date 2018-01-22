@@ -1,5 +1,8 @@
 # Public Order API (alpha)
 
+[Details](#specific-details)
+[Order Status](#order-status)
+
 ## Introduction
 
 If you're interested in being able to efficiently, cost-effectively, and
@@ -311,3 +314,16 @@ The end result is that users can map any composed/printed final product
   }]
 }
 ```
+
+## Order status
+
+The current implementation does expose status details at a high level, in most
+cases. When you create an order successfully, the response body will indicate
+both the order ID and the URL you can query to get the current status.
+Eventually, status should be granularly returned at the level of each detail
+object. Currently, however, we only return the order-level statuses (which will
+not be granular to each recipient, etc.), and we duplicate the same events
+across each object in the details array. This should simulate the eventual
+behavior, as eventually the same status API will be available, but at a
+correctly-granular level, and will actually correspond to each detail level
+rather than being broadly applicable to the entire order and duplicated.
