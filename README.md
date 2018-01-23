@@ -1,9 +1,9 @@
 # Public Order API (alpha)
 
-[Details](#specific-details)
-[Order Status](#order-status)
-[Batching](/BATCH.md)
-[Swagger PDF](/OrderAPIV2.pdf)
+- [Details](#specific-details)
+- [Order Status](#order-status)
+- [Batching](/BATCH.md)
+- [Swagger PDF](/OrderAPIV2.pdf)
 
 ## Introduction
 
