@@ -12,7 +12,9 @@ A batch record request is allowed only to have
 [Swagger Documentation](/OrderAPIV2.pdf)
 
 ### GET Order
+
 The GET Order call is the URL returned in the location header on a POST Order request.   This is the unique resource URI for the order that has just been created.  
+
 The Detail's correlationId is used to match the status values returned in the Status Report API to details in a given batch record request.
 
 `GET /api/order-service/v2/orders/{SBS Order ID}`
@@ -107,7 +109,7 @@ The Detail's correlationId is used to match the status values returned in the St
 ### GET Status Report
 The GET Status Report API returns the status and shipments associated to correlationId's in a given batch order.  The API takes the correlationId of a record contained in a batch.  The Status Report API will only return data once a record has been batched for processing.  Until that point it will return 404.
 
-### GET /api/order-service/v2/orders/statusreport/?orderId={correlationId}
+`GET /api/order-service/v2/orders/statusreport/?orderId={correlationId}`
 
 #### Sample Response
 ```json
