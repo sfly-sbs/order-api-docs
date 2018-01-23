@@ -201,6 +201,8 @@ The POST Order API takes the JSON format for Standard Orders and based on Progra
 
 #### Sample Playload
 
+`POST /api/order-service/v2/orders/`
+
 ```json
 {
   "tenantId": 1,
