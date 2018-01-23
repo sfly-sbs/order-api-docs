@@ -1,6 +1,7 @@
 # Public Order API (alpha)
 
 - [Details](#specific-details)
+- [Security](#security)
 - [Order Status](#order-status)
 - [Batching](/BATCH.md)
 - [Swagger PDF](/OrderAPIV2.pdf)
@@ -22,6 +23,49 @@ existing clients to programatically create new print orders. We designed the API
 and formats to be RESTful (stateless and resource-oriented), and flexible so
 that they can serve multiple use cases, including a flexible many-to-many
 mapping of print products to customer shipping destinations.
+
+## Security
+
+SBS Services are secured using OAUTH2 authentication. 
+
+Navigating OAUTH2 authentication on the SBS Platform for Shutterfly PROD environment:
+
+Getting an Authorization Token:
+
+`curl https://idp2.sbs.shutterfly.com/idp/oauth2/sfly/access_token -d grant_type=password -d client_id=myid -d client_secret=mysecret -d username=myusername -d password=mypassword`
+
+Returns:
+
+`{"access_token":"tokenguid","scope":"delimited scopes","token_type":"Bearer","expires_in":3599}`
+
+Passing the Authorization Token in a call:
+
+`curl https://authn.sbs.shutterfly.com/api/authn/v1/tokeninfo -H "Authorization: Bearer mytoken"`
+
+Returns:
+
+```json
+{
+  "access_token":"tokenguid",
+  "uid":"youruid",
+  "grant_type":"password",
+  "scope":["Your", "Scopes"],
+  "admin":"",
+  "realm":"/sfly",
+  "token_type":"Bearer",
+  "expires_in":2096,
+  "client_id":"yourclientid",
+  "id":"id",
+  "user_name":"someUsername",
+  "user_desc":"some description",
+  "user_email":"your@email.test",
+  "authorities":[ "ROLE_YOUR_TENANCY" ]
+}
+```
+
+Clients can use the above call to validate their token is valid.  
+
+`POST https://api.sbs.shutterfly.com/api/treering-ingest/v2/orders/ -H “Content-Type: text/xml” -H “Authorization: Bearer yourtoken”`
 
 ## Principles behind the data format
 
